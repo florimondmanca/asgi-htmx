@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asgi-htmx"
+description = "HTMX integration for ASGI applications."
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+  { name = "Florimond Manca", email = "florimond.manca@protonmail.com" },
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Framework :: AsyncIO",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+]
+dependencies = []
+dynamic = ["version", "readme"]
+
+[project.urls]
+"Homepage" = "https://github.com/florimondmanca/asgi-htmx"
+
+[tool.setuptools.dynamic]
+version = { attr = "asgi_htmx.__version__" }
+readme = { file = ["README.md", "CHANGELOG.md"] }

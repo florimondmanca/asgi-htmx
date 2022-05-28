@@ -1,0 +1,18 @@
+-e .
+
+# Tooling and tests.
+autoflake
+black==22.3.*
+flake8==4.*
+httpx==0.22.*
+isort==5.*
+mypy==0.950
+pytest==7.*
+pytest-asyncio==0.18.*
+pytest-cov
+
+# Examples
+starlette
+fastapi
+jinja2
+uvicorn
