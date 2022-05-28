@@ -1,20 +1,7 @@
-<div>
-  Bravo!
-  <button hx-get="{{ url_for('home') }}" hx-target="body">
-    Reset
-  </button>
+Bravo!
 
-  <table>
-    <tr>
-      <th>Property</th>
-      <th>Value</th>
-    </tr>
-    {% for prop, value in rows %}
-    <tr>
-      <td><code>{{ prop }}</code></td>
-      <td><code>{{ value }}</code></td>
-    </tr>
-    {% endfor %}
-  </table>
-</div>
+<button hx-get="{{ url_for('home') }}" hx-target="body">
+  Reset
+</button>
 
+{{ render_partial("components/htmx_table.html", table=table) }}

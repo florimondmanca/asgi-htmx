@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from fastapi import FastAPI, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -7,13 +5,15 @@ from fastapi.templating import Jinja2Templates
 from asgi_htmx import HtmxMiddleware
 from asgi_htmx import HtmxRequest as Request
 
-HERE = Path(__file__).parent
-
-templates = Jinja2Templates(directory=HERE / "templates")
+from .common import HERE, make_table
+from .lib import render_partial
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
 app.add_middleware(HtmxMiddleware)
+
+templates = Jinja2Templates(directory=HERE / "templates")
+render_partial.register_starlette(templates)
 
 
 @app.get("/", name="home")
@@ -23,10 +23,7 @@ async def home(request: Request) -> Response:
 
 @app.get("/result", name="result")
 async def result(request: Request) -> Response:
-    assert (htmx := request["htmx"])
+    assert (htmx := request.scope["htmx"])
     template = "partials/result.html"
-    context = {
-        "request": request,
-        "rows": [(k, getattr(htmx, k)) for k in dir(htmx) if not k.startswith("_")],
-    }
+    context = {"request": request, "table": make_table(htmx)}
     return templates.TemplateResponse(template, context)

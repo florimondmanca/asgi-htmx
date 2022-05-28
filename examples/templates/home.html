@@ -9,7 +9,7 @@
 <body>
   <h1>ASGI + HTMX</h1>
 
-  {% include "partials/clickme.html" %}
+  {{ render_partial('partials/clickme.html', request=request) }}
 
   {% if framework == "quart" %}
     <script src="{{ url_for('static', filename="/js/htmx.min.js") }}" defer></script>

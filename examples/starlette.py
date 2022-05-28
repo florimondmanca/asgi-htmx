@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from starlette.applications import Starlette
 from starlette.middleware import Middleware
 from starlette.responses import Response
@@ -10,9 +8,12 @@ from starlette.templating import Jinja2Templates
 from asgi_htmx import HtmxMiddleware
 from asgi_htmx import HtmxRequest as Request
 
-HERE = Path(__file__).parent
+from .common import HERE, make_table
+from .lib import render_partial
+
 static = StaticFiles(directory=HERE / "static")
 templates = Jinja2Templates(directory=HERE / "templates")
+render_partial.register_starlette(templates)
 
 
 async def home(request: Request) -> Response:
@@ -20,12 +21,9 @@ async def home(request: Request) -> Response:
 
 
 async def result(request: Request) -> Response:
-    assert (htmx := request["htmx"])
+    assert (htmx := request.scope["htmx"])
     template = "partials/result.html"
-    context = {
-        "request": request,
-        "rows": [(k, getattr(htmx, k)) for k in dir(htmx) if not k.startswith("_")],
-    }
+    context = {"request": request, "table": make_table(htmx)}
     return templates.TemplateResponse(template, context)
 
 
