@@ -1,5 +1,7 @@
 # asgi-htmx
 
+[![Build Status](https://dev.azure.com/florimondmanca/public/_apis/build/status/florimondmanca.asgi-htmx?branchName=master)](https://dev.azure.com/florimondmanca/public/_build?definitionId=18)
+
 [HTMX](https://htmx.org) integration for [ASGI](https://asgi.readthedocs.io/en/latest/) applications. Works with Starlette, FastAPI, Quart -- or any other web framework supporting ASGI that exposes the ASGI `scope`. Inspired by [django-htmx](https://github.com/adamchainz/django-htmx).
 
 **Table of contents**
