@@ -1,6 +1,8 @@
 # asgi-htmx
 
 [![Build Status](https://dev.azure.com/florimondmanca/public/_apis/build/status/florimondmanca.asgi-htmx?branchName=master)](https://dev.azure.com/florimondmanca/public/_build?definitionId=18)
+[![Coverage](https://codecov.io/gh/florimondmanca/asgi-htmx/branch/master/graph/badge.svg)](https://codecov.io/gh/florimondmanca/asgi-htmx)
+[![Package version](https://badge.fury.io/py/asgi-htmx.svg)](https://pypi.org/project/asgi-htmx)
 
 [HTMX](https://htmx.org) integration for [ASGI](https://asgi.readthedocs.io/en/latest/) applications. Works with Starlette, FastAPI, Quart -- or any other web framework supporting ASGI that exposes the ASGI `scope`. Inspired by [django-htmx](https://github.com/adamchainz/django-htmx).
 
