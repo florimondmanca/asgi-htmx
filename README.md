@@ -12,10 +12,10 @@
 
 ## Installation
 
-Not on PyPI yet. For now, try `asgi-htmx` out by installing from git:
+**NOTE**: This is alpha software. Please be sure to pin your dependencies.
 
 ```
-pip install git+https://github.com/florimondmanca/asgi-htmx.git
+pip install asgi-htmx==0.1.*
 ```
 
 ## Quickstart
