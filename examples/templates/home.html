@@ -12,9 +12,9 @@
   {{ render_partial('partials/clickme.html', request=request) }}
 
   {% if framework == "quart" %}
-    <script src="{{ url_for('static', filename="/js/htmx.min.js") }}" defer></script>
+    <script src="{{ url_for('static', filename='/js/htmx.min.js') }}" defer></script>
   {% else %}
-    <script src="{{ url_for('static', path="/js/htmx.min.js") }}" defer></script>
+    <script src="{{ url_for('static', path='/js/htmx.min.js') }}" defer></script>
   {% endif %}
 </body>
 </html>
