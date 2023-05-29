@@ -1,13 +1,12 @@
 from pathlib import Path
-
-from asgi_htmx import HtmxDetails
+from typing import Any
 
 HERE = Path(__file__).parent
 
 
-def make_table(htmx: HtmxDetails) -> list:
+def make_table(obj: Any) -> list:
     return [
         {"name": name, "value": getattr(htmx, name)}
-        for name in dir(htmx)
+        for name in dir(obj)
         if not name.startswith("_")
     ]
