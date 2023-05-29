@@ -1,6 +1,8 @@
 # Inspired by: https://github.com/mikeckennedy/jinja_partials
 from typing import TYPE_CHECKING, Any
 
+import markupsafe
+
 if TYPE_CHECKING:
     from quart import Quart
     from starlette.templating import Jinja2Templates
@@ -8,7 +10,7 @@ if TYPE_CHECKING:
 
 def register_starlette(templates: "Jinja2Templates") -> None:
     def render_partial(name: str, **context: Any) -> str:
-        return templates.get_template(name).render(**context)
+        return markupsafe.Markup(templates.get_template(name).render(**context))
 
     templates.env.globals.update(render_partial=render_partial)
 
