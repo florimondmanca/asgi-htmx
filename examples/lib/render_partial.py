@@ -18,6 +18,7 @@ def register_starlette(templates: "Jinja2Templates") -> None:
 def register_quart(app: "Quart") -> None:
     async def render_partial(name: str, **context: Any) -> str:
         # NOTE: Quart automatically awaits function calls in its templates environment.
-        return await app.jinja_env.get_template(name).render_async(**context)
+        html = await app.jinja_env.get_template(name).render_async(**context)
+        return markupsafe.Markup(html)
 
     app.jinja_env.globals.update(render_partial=render_partial)
