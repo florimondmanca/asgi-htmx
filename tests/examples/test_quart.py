@@ -13,5 +13,5 @@ async def test_example_quart() -> None:
         response = await client.get("http://testserver")
         html = lxml.html.fromstring(response.text)
         button = html.xpath("//button")[0]
-        assert button
+        assert button is not None
         assert response.status_code == 200
