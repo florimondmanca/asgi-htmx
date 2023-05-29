@@ -1,4 +1,5 @@
 import httpx
+import lxml.html
 import pytest
 
 pytest.importorskip("fastapi")
@@ -10,4 +11,7 @@ async def test_example_fastapi() -> None:
 
     async with httpx.AsyncClient(app=app) as client:
         response = await client.get("http://testserver")
+        html = lxml.html.fromstring(response.text)
+        button = html.xpath("//button")[0]
+        assert button is not None
         assert response.status_code == 200
