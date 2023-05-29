@@ -5,11 +5,8 @@ from quart import Quart, render_template, request
 from asgi_htmx import HtmxDetails
 
 from .common import make_table
-from .lib import render_partial
 
 app = Quart(__name__)
-
-render_partial.register_quart(app)
 
 
 @app.route("/")

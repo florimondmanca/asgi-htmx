@@ -6,14 +6,12 @@ from asgi_htmx import HtmxMiddleware
 from asgi_htmx import HtmxRequest as Request
 
 from .common import HERE, make_table
-from .lib import render_partial
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
 app.add_middleware(HtmxMiddleware)
 
 templates = Jinja2Templates(directory=HERE / "templates")
-render_partial.register_starlette(templates)
 
 
 @app.get("/", name="home")

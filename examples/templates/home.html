@@ -9,7 +9,14 @@
 <body>
   <h1>ASGI + HTMX</h1>
 
-  {{ render_partial('partials/clickme.html', request=request) }}
+  <button
+    id="clickme"
+    hx-get="{{ url_for('result') }}"
+    hx-target="this"
+    hx-swap="outerHTML"
+  >
+    Click Me!
+  </button>
 
   {% if framework == "quart" %}
     <script src="{{ url_for('static', filename='/js/htmx.min.js') }}" defer></script>

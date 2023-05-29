@@ -9,11 +9,9 @@ from asgi_htmx import HtmxMiddleware
 from asgi_htmx import HtmxRequest as Request
 
 from .common import HERE, make_table
-from .lib import render_partial
 
 static = StaticFiles(directory=HERE / "static")
 templates = Jinja2Templates(directory=HERE / "templates")
-render_partial.register_starlette(templates)
 
 
 async def home(request: Request) -> Response:
